@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model IEnumerable<Cit.Apps.Licensing.UI.ViewModels.UserDetailsModel>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    @foreach(var i in Model){
+        <p>@i.UserName</p>
+    }
+</div>
