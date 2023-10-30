@@ -24,7 +24,6 @@ namespace Cit.Apps.Licensing.Application.Features.Users.Queries.GetUsers
             var users=_unitOfWork.Repository<User>().Entities.ToList();
             var readmodel=_mapper.Map<List<UserReadModel>>(users);
             var result = Result<List<UserReadModel>>.ReturnResult(200, "Retrieval Success", readmodel);
-
             return result;
         }
 

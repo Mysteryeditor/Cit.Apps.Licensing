@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,10 +16,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Cit.Apps.Domain\Cit.Apps.Licensing.Domain.csproj" />
     <ProjectReference Include="..\Cit.Apps.Licensing.Shared\Cit.Apps.Licensing.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Features\Users\Commands\" />
   </ItemGroup>
 
 </Project>

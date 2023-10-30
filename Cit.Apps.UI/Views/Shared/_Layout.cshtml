@@ -25,18 +25,22 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item ms-lg-auto">
+                            <a class="nav-link text-dark btn btn-success text-white" asp-area="" asp-controller="User" asp-action="CreateUser">Signup</a>
+
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <div role="main" class="pb-3 h-100">
             @RenderBody()
-        </main>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer fixed-bottom p-lg-3 text-muted">
         <div class="container">
             &copy; 2023 - Cit.Apps.UI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

@@ -3,6 +3,7 @@ using Cit.Apps.Licensing.Domain.Common;
 using Cit.Apps.Licensing.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace Cit.Apps.Licensing.Persistence.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
@@ -22,9 +23,8 @@ namespace Cit.Apps.Licensing.Persistence.Repositories
 
         public Task UpdateAsync(T entity)
         {
-            //T exist = _databaseContext.Set<T>().Find(entity.Id);
-            //_databaseContext.Entry(exist).CurrentValues.SetValues(entity);
-            return Task.CompletedTask;
+                _databaseContext.Entry(entity).State = EntityState.Modified;
+                return Task.CompletedTask;
         }
 
         public Task DeleteAsync(T entity)
@@ -40,9 +40,11 @@ namespace Cit.Apps.Licensing.Persistence.Repositories
                 .ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(int UserId)
         {
-            return await _databaseContext.Set<T>().FindAsync(id);
+            var item=await _databaseContext.Set<T>().FindAsync(UserId);
+            return item;
+
         }
     }
 }

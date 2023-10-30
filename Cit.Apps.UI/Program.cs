@@ -1,8 +1,7 @@
 using Cit.Apps.Licensing.Application.Extensions;
-using Cit.Apps.Licensing.Application.Interfaces.Repositories;
 using Cit.Apps.Licensing.Persistence.Contexts;
 using Cit.Apps.Licensing.Persistence.Extensions;
-using Cit.Apps.Licensing.Persistence.Repositories;
+using Cit.Apps.Licensing.Shared.Password;
 using Cit.Apps.Licensing.UI.Mappings;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +18,7 @@ builder.Services.AddAutoMapper(config =>
 });
 builder.Services.AddPersistenceLayer(builder.Configuration);
 builder.Services.AddApplicationLayer();
+builder.Services.AddTransient<IPasswordService, PasswordService>();
 builder.Services.AddControllersWithViews();
 
 
@@ -42,6 +42,11 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "user",
+    pattern: "{controller=User}/{action=AllUsers}/{id?}");
+
 
 app.MapControllerRoute(
     name: "default",
