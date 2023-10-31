@@ -7,7 +7,7 @@ namespace Cit.Apps.Licensing.Domain.Common
     public abstract class BaseEntity
     {
         [Key]
-        public int UniqueId { get; set; }
+        public int Id { get; set; }
         public int CreatedBy { get; set; }
 
         public DateTime CreatedAt { get; set; }

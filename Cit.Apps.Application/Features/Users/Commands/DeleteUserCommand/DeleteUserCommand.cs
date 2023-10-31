@@ -2,18 +2,12 @@
 using Cit.Apps.Licensing.Domain.Entities;
 using Cit.Apps.Shared.Result;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cit.Apps.Licensing.Application.Features.Users.Commands.DeleteUserCommand
 {
     public record DeleteUserCommand : IRequest<ResultModel<string>>
     {
-        public string Id { get; set; }
-        public int UserId { get; set; }
+        public int Id { get; set; }
     }
 
     public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, ResultModel<string>>
@@ -31,7 +25,7 @@ namespace Cit.Apps.Licensing.Application.Features.Users.Commands.DeleteUserComma
 
             try
             {
-                var deleteData = await _unitOfWork.Repository<User>().GetByIdAsync(request.UserId);
+                var deleteData = await _unitOfWork.Repository<User>().GetByIdAsync(request.Id);
                 if (deleteData is not null)
                 {
                    await _unitOfWork.Repository<User>().DeleteAsync(deleteData);
@@ -41,19 +35,16 @@ namespace Cit.Apps.Licensing.Application.Features.Users.Commands.DeleteUserComma
 
                 else
                 {
+                    badResult.Message = "User Not Found!Sorry!";
                     return badResult;
                 }
-
-
             }
 
             catch (Exception ex)
             {
+                badResult.Message = ex.Message;
                 return badResult;
             }
-
-             return badResult;
-
         }
     }
 }

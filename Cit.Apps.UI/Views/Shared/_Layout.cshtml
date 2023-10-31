@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Cit.Apps.UI.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
 </head>
 <body>
     <header>
@@ -23,9 +24,14 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="AllUsers">UserList</a>
                         </li>
-                        <li class="nav-item ms-lg-auto">
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-lg-2">
+                            <a class="nav-link text-dark btn btn-primary text-white" asp-area="" asp-controller="Authentication" asp-action="Login">Login</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark btn btn-success text-white" asp-area="" asp-controller="User" asp-action="CreateUser">Signup</a>
 
                         </li>
@@ -49,5 +55,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)
+    @await Component.InvokeAsync("NToastNotify")
 </body>
 </html>

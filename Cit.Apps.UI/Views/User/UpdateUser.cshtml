@@ -3,43 +3,48 @@
 <div class="container">
     <div class="card mx-auto mt-5" style="max-width: 500px;">
         <div class="card-header text-center">
-            <h2>Edit User</h2>
+            <h1 class="fw-bold">Edit User</h1>
         </div>
         <div class="card-body">
-            <form method="post" action="UpdateUser">
-                <input hidden asp-for="UserId" />
+            @using (Html.BeginForm("UpdateUser", "User", FormMethod.Post))
+            {
+                @Html.HiddenFor(model => model.Id)
 
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="FirstName">First Name</label>
-                            <input asp-for="FirstName" class="form-control" value="@Model.FirstName" />
-                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @Value = Model.FirstName })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="LastName">Last Name</label>
-                            <input asp-for="LastName" class="form-control" value="@Model.LastName" />
-                            <span asp-validation-for="LastName" class="text-danger"></span>
+                            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @Value = Model.LastName })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="UserName">Username</label>
-                            <input asp-for="UserName" class="form-control" value="@Model.UserName" />
-                            <span asp-validation-for="UserName" class="text-danger"></span>
+                            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @Value = Model.UserName })
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-12 text-center">
+                <div class="row d-flex justify-content-lg-center">
+                    <div class="col-md-7">
                         <button type="submit" class="btn btn-primary my-lg-3">Update Changes</button>
                     </div>
+
+                    <div class="col-md-4 mx-lg-2">
+                        <button asp-action="AllUsers" class="btn btn-info my-lg-3">Go Back</button>
+                    </div>
                 </div>
-            </form>
+            }
         </div>
     </div>
 </div>

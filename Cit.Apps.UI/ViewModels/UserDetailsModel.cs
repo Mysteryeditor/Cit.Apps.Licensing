@@ -5,7 +5,7 @@ namespace Cit.Apps.Licensing.UI.ViewModels
 {
     public class UserDetailsModel
     {
-        public int UserId { get; set; }
+        public int Id { get; set; }
         [Required]
         public string UserName { get; set; }
         [Required]

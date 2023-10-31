@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Cit.Apps.Licensing.Shared.Password
 {
-    public class PasswordService :IPasswordService
+    public class PasswordService : IPasswordService
     {
         ////private readonly IOptions<IdentityOptions> _identityOptions;
         //private readonly ILogger<PasswordService> _logger;
@@ -33,7 +33,7 @@ namespace Cit.Apps.Licensing.Shared.Password
         public Task<ResultModel<string?>> CreatePasswordHash(string password, out string passwordHash,
             out string passwordSalt)
         {
-            
+
             passwordHash = ""; passwordSalt = "";
             try
             {
@@ -46,7 +46,7 @@ namespace Cit.Apps.Licensing.Shared.Password
                     passwordSalt = Convert.ToBase64String(hmac.Key);
                     passwordHash = Convert.ToBase64String(hmac.ComputeHash(Encoding.UTF8.GetBytes(password)));
                 }
-                return Result<string?>.ReturnResult(200, "Password Created Successfully", null); 
+                return Result<string?>.ReturnResult(200, "Password Created Successfully", null);
             }
             catch (Exception ex)
             {
@@ -59,23 +59,25 @@ namespace Cit.Apps.Licensing.Shared.Password
         {
             try
             {
-                if (string.IsNullOrEmpty(password)) return Result<string?>.ReturnResult(404, "Password required.", null);
-                if (string.IsNullOrWhiteSpace(password)) return Result<string?>.ReturnResult(404, "Password cannot be empty or whitespace only string..", null);
-                if (storedHash.Length != 64) return Result<string?>.ReturnResult(404, "Invalid Password hash found", null);
-                if (storedSalt.Length != 128) return Result<string?>.ReturnResult(404, "Invalid Password salt found", null);
+                if (string.IsNullOrEmpty(password)) return Result<string?>.ReturnResult(422, "Password required.", null);
+                if (string.IsNullOrWhiteSpace(password)) return Result<string?>.ReturnResult(422, "Password cannot be empty or whitespace only string..", null);
+                if (storedHash.Length != 64) return Result<string?>.ReturnResult(401, "Invalid Password hash found", null);
+                //if (storedSalt.Length != 128) return Result<string?>.ReturnResult(404, "Invalid Format", null);
 
                 using (var hmac = new System.Security.Cryptography.HMACSHA512(storedSalt))
                 {
                     var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
                     if (computedHash.SequenceEqual(storedHash))
                         return Result<string?>.ReturnResult(200, "Password is Right", null);
+
+                    else return Result<string?>.ReturnResult(401, "UserName/Password is wrong", null);
                 }
             }
             catch (Exception ex)
             {
                 //ServicesHelper.HandleServiceError(ref serviceResult, _logger, ex, "Error while trying to verify the password.");
             }
-            return Result<string?>.ReturnResult(200, "Password is Right", null);
+            return Result<string?>.ReturnResult(500, "Error Occured..Please Try Later", null);
         }
 
         /// <summary>
@@ -97,7 +99,7 @@ namespace Cit.Apps.Licensing.Shared.Password
             };
 
             Random rand = new Random(Environment.TickCount);
-            List<char> chars = new List<char>();
+            List<char> chars = new();
 
             if (requireUppercase)
                 chars.Insert(rand.Next(0, chars.Count),

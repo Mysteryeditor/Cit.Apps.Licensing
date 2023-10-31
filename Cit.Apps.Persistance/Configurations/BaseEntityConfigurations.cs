@@ -7,7 +7,8 @@ namespace Cit.Apps.Licensing.Persistence.Configurations
     {
         public BaseEntityConfiguration()
         {
-            this.Property(e=>e.UniqueId).HasColumnName("Unique Id").IsRequired();
+
+            this.Property(e => e.Id).HasColumnName("Id").IsRequired();
             this.Property(e => e.CreatedAt).HasColumnName("CreatedDate").IsRequired();
             this.Property(e => e.ModifiedAt).HasColumnName("ModifiedDate").IsRequired();
             this.HasOptional(p => p.CreatedByUser).WithMany().HasForeignKey(p => p.CreatedBy);

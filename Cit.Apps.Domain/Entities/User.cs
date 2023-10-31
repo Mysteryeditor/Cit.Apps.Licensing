@@ -2,11 +2,10 @@
 
 namespace Cit.Apps.Licensing.Domain.Entities
 {
-    public class User:BaseEntity
+    public class User : BaseEntity
     {
-        public int UserId { get; set; }
         public string UserName { get; set; }
-        public string FirstName{ get; set; }
+        public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PasswordHash { get; set; }
         public string PasswordSalt { get; set; }
@@ -14,6 +13,10 @@ namespace Cit.Apps.Licensing.Domain.Entities
         public DateTime? CreatedAt { get; set; }
         public int? ModifiedBy { get; set; }
         public DateTime? ModifiedAt { get; set; }
+
+        public bool IsDefault { get; set; }  
+
+        //isdefault bool
 
     }
 }

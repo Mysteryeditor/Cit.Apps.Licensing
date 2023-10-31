@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cit.Apps.Licensing.Persistence.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231030074405_names-update2")]
-    partial class namesupdate2
+    [Migration("20231030144503_first-migration")]
+    partial class firstmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,11 +59,11 @@ namespace Cit.Apps.Licensing.Persistence.Migrations
 
             modelBuilder.Entity("Cit.Apps.Licensing.Domain.Entities.Client", b =>
                 {
-                    b.Property<int>("ClientId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClientId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<long>("ContactNumber")
                         .HasColumnType("bigint");
@@ -89,7 +89,7 @@ namespace Cit.Apps.Licensing.Persistence.Migrations
                     b.Property<string>("SubscriptionKey")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ClientId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CreatedBy");
 
@@ -100,11 +100,11 @@ namespace Cit.Apps.Licensing.Persistence.Migrations
 
             modelBuilder.Entity("Cit.Apps.Licensing.Domain.Entities.ClientSubscription", b =>
                 {
-                    b.Property<int>("ClientSubscriptionId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClientSubscriptionId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
@@ -136,7 +136,7 @@ namespace Cit.Apps.Licensing.Persistence.Migrations
                     b.Property<int>("SubscriptionPlanId")
                         .HasColumnType("int");
 
-                    b.HasKey("ClientSubscriptionId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ClientId");
 
@@ -189,11 +189,11 @@ namespace Cit.Apps.Licensing.Persistence.Migrations
 
             modelBuilder.Entity("Cit.Apps.Licensing.Domain.Entities.SubscriptionPlan", b =>
                 {
-                    b.Property<int>("SubscriptionPlanId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubscriptionPlanId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ApplicationId")
                         .HasColumnType("int");
@@ -219,7 +219,7 @@ namespace Cit.Apps.Licensing.Persistence.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("SubscriptionPlanId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ApplicationId");
 
@@ -232,11 +232,11 @@ namespace Cit.Apps.Licensing.Persistence.Migrations
 
             modelBuilder.Entity("Cit.Apps.Licensing.Domain.Entities.User", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -265,7 +265,7 @@ namespace Cit.Apps.Licensing.Persistence.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CreatedBy");
 

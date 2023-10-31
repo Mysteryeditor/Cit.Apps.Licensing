@@ -15,9 +15,11 @@ namespace Cit.Apps.Licensing.Persistence.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PasswordSalt = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
@@ -27,7 +29,17 @@ namespace Cit.Apps.Licensing.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.UserId);
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Users_Users_CreatedBy",
+                        column: x => x.CreatedBy,
+                        principalTable: "Users",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Users_Users_ModifiedBy",
+                        column: x => x.ModifiedBy,
+                        principalTable: "Users",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -49,13 +61,13 @@ namespace Cit.Apps.Licensing.Persistence.Migrations
                         name: "FK_Applications_Users_CreatedBy",
                         column: x => x.CreatedBy,
                         principalTable: "Users",
-                        principalColumn: "UserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Applications_Users_ModifiedBy",
                         column: x => x.ModifiedBy,
                         principalTable: "Users",
-                        principalColumn: "UserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
 
@@ -63,7 +75,7 @@ namespace Cit.Apps.Licensing.Persistence.Migrations
                 name: "Clients",
                 columns: table => new
                 {
-                    ClientId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ContactNumber = table.Column<long>(type: "bigint", nullable: false),
@@ -76,18 +88,18 @@ namespace Cit.Apps.Licensing.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clients", x => x.ClientId);
+                    table.PrimaryKey("PK_Clients", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Clients_Users_CreatedBy",
                         column: x => x.CreatedBy,
                         principalTable: "Users",
-                        principalColumn: "UserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Clients_Users_ModifiedBy",
                         column: x => x.ModifiedBy,
                         principalTable: "Users",
-                        principalColumn: "UserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
 
@@ -95,7 +107,7 @@ namespace Cit.Apps.Licensing.Persistence.Migrations
                 name: "SubscriptionPlans",
                 columns: table => new
                 {
-                    SubscriptionPlanId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -108,7 +120,7 @@ namespace Cit.Apps.Licensing.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SubscriptionPlans", x => x.SubscriptionPlanId);
+                    table.PrimaryKey("PK_SubscriptionPlans", x => x.Id);
                     table.ForeignKey(
                         name: "FK_SubscriptionPlans_Applications_ApplicationId",
                         column: x => x.ApplicationId,
@@ -119,13 +131,13 @@ namespace Cit.Apps.Licensing.Persistence.Migrations
                         name: "FK_SubscriptionPlans_Users_CreatedBy",
                         column: x => x.CreatedBy,
                         principalTable: "Users",
-                        principalColumn: "UserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_SubscriptionPlans_Users_ModifiedBy",
                         column: x => x.ModifiedBy,
                         principalTable: "Users",
-                        principalColumn: "UserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
 
@@ -133,7 +145,7 @@ namespace Cit.Apps.Licensing.Persistence.Migrations
                 name: "ClientSubscriptions",
                 columns: table => new
                 {
-                    ClientSubscriptionId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ClientId = table.Column<int>(type: "int", nullable: false),
                     SubscriptionPlanId = table.Column<int>(type: "int", nullable: false),
@@ -148,24 +160,24 @@ namespace Cit.Apps.Licensing.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ClientSubscriptions", x => x.ClientSubscriptionId);
+                    table.PrimaryKey("PK_ClientSubscriptions", x => x.Id);
                     table.ForeignKey(
                         name: "FK_ClientSubscriptions_Clients_ClientId",
                         column: x => x.ClientId,
                         principalTable: "Clients",
-                        principalColumn: "ClientId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_ClientSubscriptions_Users_CreatedBy",
                         column: x => x.CreatedBy,
                         principalTable: "Users",
-                        principalColumn: "UserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_ClientSubscriptions_Users_ModifiedBy",
                         column: x => x.ModifiedBy,
                         principalTable: "Users",
-                        principalColumn: "UserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
 
@@ -190,19 +202,19 @@ namespace Cit.Apps.Licensing.Persistence.Migrations
                         name: "FK_SubscriptionFeatures_SubscriptionPlans_SubscriptionPlanId",
                         column: x => x.SubscriptionPlanId,
                         principalTable: "SubscriptionPlans",
-                        principalColumn: "SubscriptionPlanId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_SubscriptionFeatures_Users_CreatedBy",
                         column: x => x.CreatedBy,
                         principalTable: "Users",
-                        principalColumn: "UserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_SubscriptionFeatures_Users_ModifiedBy",
                         column: x => x.ModifiedBy,
                         principalTable: "Users",
-                        principalColumn: "UserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
 
@@ -269,6 +281,16 @@ namespace Cit.Apps.Licensing.Persistence.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_SubscriptionPlans_ModifiedBy",
                 table: "SubscriptionPlans",
+                column: "ModifiedBy");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_CreatedBy",
+                table: "Users",
+                column: "CreatedBy");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_ModifiedBy",
+                table: "Users",
                 column: "ModifiedBy");
         }
 

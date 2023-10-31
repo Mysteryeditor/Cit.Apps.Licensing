@@ -7,7 +7,6 @@ namespace Cit.Apps.Licensing.Persistence.Configurations
         public ApplicationEntityConfiguration()
         {
             this.ToTable("Application");
-            this.HasKey<int>(e => e.Id);
             this.Property(p => p.Name).HasColumnName("Name").HasColumnType("varchar(60)").IsRequired();
         }
     }

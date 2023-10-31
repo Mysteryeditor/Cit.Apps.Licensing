@@ -3,42 +3,43 @@
 
 <div class="container-fluid d-flex justify-content-center">
     <div class="card col-lg-6 col-sm-12 col-md-10 p-lg-4">
-        <form method="post" action="CreateUser">
+        @using (Html.BeginForm("CreateUser", "User", FormMethod.Post))
+        {
             <div class="row">
-                <div class="col-lg-8 col-md-12 col-sm-12">
-                    <div class="form-group">
+                <div>
+                    <div class="form-group text-lg-center">
                         <label asp-for="Username">Username</label>
                         <input asp-for="Username" type="text" class="form-control" />
                         <span asp-validation-for="Username" class="text-danger"></span>
                     </div>
                 </div>
 
-                <div class="col-lg-8 col-md-12 col-sm-12">
-                    <div class="form-group">
+                <div>
+                    <div class="form-group text-lg-center">
                         <label asp-for="FirstName">First Name</label>
                         <input asp-for="FirstName" type="text" class="form-control" />
                         <span asp-validation-for="FirstName" class="text-danger"></span>
                     </div>
                 </div>
 
-                <div class="col-lg-8 col-md-12 col-sm-12">
-                    <div class="form-group">
+                <div>
+                    <div class="form-group text-lg-center">
                         <label asp-for="LastName">Last Name</label>
                         <input asp-for="LastName" type="text" class="form-control" />
                         <span asp-validation-for="LastName" class="text-danger"></span>
                     </div>
                 </div>
 
-                <div class="col-lg-8 col-md-12 col-sm-12">
-                    <div class="form-group">
+                <div>
+                    <div class="form-group text-lg-center">
                         <label asp-for="Password">Password</label>
                         <input asp-for="Password" type="password" class="form-control" />
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                 </div>
 
-                <div class="col-lg-8 col-md-12 col-sm-12">
-                    <div class="form-group">
+                <div>
+                    <div class="form-group text-lg-center">
                         <label asp-for="ConfirmPassword">Confirm Password</label>
                         <input asp-for="ConfirmPassword" type="password" class="form-control" />
                         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
@@ -46,11 +47,11 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-4 mt-lg-3">
-                    <button class="btn btn-outline-primary text-center">Submit</button>
-                </div>
+            <div class="row d-flex justify-content-lg-center">
+                <button class="btn btn-outline-primary text-center my-lg-3 col-lg-3">Submit</button>
+
+                <button asp-action="AllUsers" class="btn btn-info text-center mx-lg-3 my-lg-3 col-lg-3">Go Back</button>
             </div>
-        </form>
+        }
     </div>
 </div>

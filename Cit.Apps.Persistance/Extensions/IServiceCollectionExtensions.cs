@@ -29,6 +29,7 @@ namespace Cit.Apps.Licensing.Persistence.Extensions
         {
             services.AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork));
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddTransient(typeof(IService),typeof(Service));
         }
 
 

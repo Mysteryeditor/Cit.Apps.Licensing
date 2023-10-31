@@ -4,7 +4,6 @@ namespace Cit.Apps.Licensing.Domain.Entities
 {
     public class ClientSubscription : BaseEntity
     {
-        public int ClientSubscriptionId { get; set; }
         public int ClientId { get; set; }
         public int SubscriptionPlanId { get; set; }
 

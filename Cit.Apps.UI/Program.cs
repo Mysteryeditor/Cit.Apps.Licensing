@@ -4,9 +4,18 @@ using Cit.Apps.Licensing.Persistence.Extensions;
 using Cit.Apps.Licensing.Shared.Password;
 using Cit.Apps.Licensing.UI.Mappings;
 using Microsoft.EntityFrameworkCore;
-
+using NToastNotify;
 
 var builder = WebApplication.CreateBuilder(args);
+// Add services to the container.
+#pragma warning disable CS0618 // Type or member is obsolete
+builder.Services.AddRazorPages().AddNToastNotifyNoty(new NotyOptions
+{
+    ProgressBar = true,
+    Timeout = 5000,
+
+});
+#pragma warning restore CS0618 // Type or member is obsolete
 var connectionString = builder.Configuration.GetConnectionString("ConnectionString");
 
 builder.Services.AddDbContext<DatabaseContext>(options =>
@@ -40,13 +49,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.MapRazorPages();
 app.UseAuthorization();
-
-app.MapControllerRoute(
-    name: "user",
-    pattern: "{controller=User}/{action=AllUsers}/{id?}");
-
+app.UseNToastNotify();
 
 app.MapControllerRoute(
     name: "default",

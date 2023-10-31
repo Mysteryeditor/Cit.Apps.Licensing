@@ -9,7 +9,7 @@ namespace Cit.Apps.Licensing.Application.ReadModels
 {
     public class UserReadModel
     {
-        public int UserId { get; set; }
+        public int Id { get; set; }
         public string UserName { get; set; }
 
         public string FirstName { get; set; }

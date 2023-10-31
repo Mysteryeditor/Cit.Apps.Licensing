@@ -9,7 +9,6 @@ namespace Cit.Apps.Licensing.Application.Features.Users.Commands.UpdateUserComma
 {
     public record UpdateUserCommand:IRequest<ResultModel<string>>{
         public int Id { get; set; } 
-        public int UserId { get; set; }
         public string FirstName{ get; set; }
         public string UserName { get; set; }
 
@@ -31,7 +30,7 @@ namespace Cit.Apps.Licensing.Application.Features.Users.Commands.UpdateUserComma
         {
             try
             {
-                var updateUser=await _unitOfWork.Repository<User>().GetByIdAsync(request.UserId);
+                var updateUser=await _unitOfWork.Repository<User>().GetByIdAsync(request.Id);
                 if (updateUser is not null)
                 {
                     updateUser.FirstName = request.FirstName;

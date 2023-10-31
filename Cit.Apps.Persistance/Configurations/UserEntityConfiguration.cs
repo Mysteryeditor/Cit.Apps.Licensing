@@ -8,7 +8,6 @@ namespace Cit.Apps.Licensing.Persistence.Configurations
         public UserEntityConfiguration()
         {
             this.ToTable("User");
-            this.HasKey<int>(k => k.UserId);
             this.Property(p=>p.UserName).IsRequired().HasColumnType("varchar(30)").HasColumnName("User Name");
             this.Property(p=>p.FirstName).IsRequired().HasColumnType("varchar(30)").HasColumnName("First Name");
             this.Property(p => p.LastName).IsRequired().HasColumnType("varchar(30)").HasColumnName("Last Name");
