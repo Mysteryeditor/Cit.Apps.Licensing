@@ -19,5 +19,6 @@ namespace Cit.Apps.Licensing.Application.ReadModels
         public DateTime? CreatedAt { get; set; }
         public int? ModifiedBy { get; set; }
         public DateTime? ModifiedAt { get; set; }
+        public bool IsDefault { get; set; }
     }
 }

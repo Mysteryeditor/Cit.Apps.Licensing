@@ -1,10 +1,9 @@
-﻿using Cit.Apps.Licensing.Application.ReadModels;
-using Cit.Apps.Licensing.UI.ViewModels;
-using AutoMapper;
-using Cit.Apps.Licensing.Domain.Entities;
-using Cit.Apps.Shared.Result;
+﻿using AutoMapper;
 using Cit.Apps.Licensing.Application.Features.Users.Commands.CreateUserCommand;
 using Cit.Apps.Licensing.Application.Features.Users.Commands.UpdateUserCommand;
+using Cit.Apps.Licensing.Application.ReadModels;
+using Cit.Apps.Licensing.Domain.Entities;
+using Cit.Apps.Licensing.UI.ViewModels;
 
 namespace Cit.Apps.Licensing.UI.Mappings
 {

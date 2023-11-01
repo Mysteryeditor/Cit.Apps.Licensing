@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Cit.Apps.UI</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Cit.Apps.UI.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <style>
+        body {
+            background-color: #F0ECE3;
+        }
+
+        .nav-link {
+            color: azure;
+            text-transform: uppercase;
+            font-size: 18px;
+            /*font-weight: bold;*/
+            font-family: 'Arvo', serif;
+        }
+
+            .nav-link:hover {
+                color: azure;
+            }
+
+
+        .button-link {
+            color: azure;
+            text-decoration: none;
+            font-size: 15px;
+            text-transform: capitalize;
+        }
+
+            .button-link:hover {
+                text-decoration: none;
+            }
+
+
+        ul {
+            list-style-type: none;
+        }
+
+        .sidebar {
+            min-height: 100vh;
+            border-right: 2px solid #C7B198;
+        }
+
+        .dashboard-content {
+            min-height: 85%;
+        }
+
+        .sidebar-links {
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 500;
+            color: black;
+        }
+
+            .sidebar-links:hover {
+                font-size: 20px;
+                color: black;
+            }
+
+        /*   .main{
+                                    display:grid;
+                                    grid-template-columns:20% 80%;
+                                }*/
+    </style>
+</head>
+<body>
+    <div class="container-fluid main d-flex p-0">
+        <div class="col-lg-3 col-sm-6 p-0">
+            <div class="sidebar">
+                <h1 class="text-black text-center mt-lg-5 pt-lg-5">CIT.APPS</h1>
+                <ul class="mt-lg-5">
+                    <li class="my-lg-2">
+                        <div class="d-flex justify-content-center">
+                            <i class="fa-solid fa-house fs-5"></i>
+                            <a class="text-decoration-none sidebar-links" asp-action="HomePage" asp-area="" asp-controller="Dashboard">Homepage</a>
+                        </div>
+                    </li>
+
+
+                    <li class="my-lg-2">
+                        <div class="d-flex justify-content-center">
+                            <i class="fa-solid fa-motorcycle fs-5"></i>
+                            <a class="text-decoration-none sidebar-links" asp-action="Administration" asp-area="" asp-controller="Dashboard">Administration</a>
+                        </div>
+                    </li>
+
+                    <li class="my-lg-2">
+                        <div class="d-flex justify-content-center">
+                            <i class="fa-regular fa-handshake fs-5"></i>
+                            <a class="text-decoration-none sidebar-links" asp-action="Applications" asp-area="" asp-controller="Dashboard">Applications</a>
+
+                        </div>
+                    </li>
+
+                    <li class="my-lg-2">
+                        <div class="d-flex justify-content-center">
+                            <i class="fa-regular fa-handshake fs-5"></i>
+                            <a class="text-decoration-none sidebar-links" asp-action="Clients" asp-area="" asp-controller="Dashboard">Clients</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex justify-content-center">
+                            <i class="fa-solid fa-arrow-right-from-bracket fs-5"></i>
+                            <a class="sidebar-links">
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
+
+
+        </div>
+        <div role="main" class="col-lg-9 col-sm-6 pb-3 h-100">
+            @RenderBody()
+        </div>
+    </div>
+
+    <footer class="border-top footer fixed-bottom p-lg-3 text-muted">
+        <div class="container">
+            &copy; 2023 - Cit.Apps.UI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)
+    @await Component.InvokeAsync("NToastNotify")
+</body>
+</html>

@@ -29,7 +29,7 @@ namespace Cit.Apps.Licensing.UI.Controllers
                 if (result.Statuscode == 200)
                 {
                     _toastNotification.AddSuccessToastMessage("Login successfull");
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("HomePage", "Dashboard");
                 }
 
                 else if(result.Statuscode ==401)
