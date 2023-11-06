@@ -2,5 +2,9 @@
     ViewData["Title"] = "Applications";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
-
+@model IEnumerable<Cit.Apps.Licensing.UI.ViewModels.ApplicationViewModel>
 <h2>Applications</h2>
+
+@foreach(var item in Model){
+    <h1>@item.Name</h1>
+}

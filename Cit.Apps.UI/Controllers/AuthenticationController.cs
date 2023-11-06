@@ -1,5 +1,6 @@
 ﻿using Cit.Apps.Licensing.Application.Interfaces.Repositories;
 using Cit.Apps.Licensing.UI.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NToastNotify;
 
@@ -28,6 +29,7 @@ namespace Cit.Apps.Licensing.UI.Controllers
 
                 if (result.Statuscode == 200)
                 {
+                    HttpContext.Session.SetString("username",userCredentials.Username);
                     _toastNotification.AddSuccessToastMessage("Login successfull");
                     return RedirectToAction("HomePage", "Dashboard");
                 }

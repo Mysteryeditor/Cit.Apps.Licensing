@@ -15,6 +15,14 @@ builder.Services.AddRazorPages().AddNToastNotifyNoty(new NotyOptions
     Timeout = 5000,
 
 });
+// Add distributed memory cache for session
+builder.Services.AddDistributedMemoryCache();
+
+// Configure session options
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(1); // Set session timeout
+});
 #pragma warning restore CS0618 // Type or member is obsolete
 var connectionString = builder.Configuration.GetConnectionString("ConnectionString");
 
@@ -52,6 +60,8 @@ app.UseRouting();
 app.MapRazorPages();
 app.UseAuthorization();
 app.UseNToastNotify();
+app.UseSession();
+
 
 app.MapControllerRoute(
     name: "default",

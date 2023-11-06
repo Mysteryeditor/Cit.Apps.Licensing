@@ -21,7 +21,7 @@ namespace Cit.Apps.Licensing.Persistence.Repositories
         public async Task<T> AddAsync(T entity)
         {
             await _databaseContext.Set<T>().AddAsync(entity);
-            return entity;
+          return entity;  
         }
 
         public Task UpdateAsync(T entity)

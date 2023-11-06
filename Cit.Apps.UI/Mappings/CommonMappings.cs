@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using Cit.Apps.Licensing.Application.Features.Users.Commands.CreateUserCommand;
-using Cit.Apps.Licensing.Application.Features.Users.Commands.UpdateUserCommand;
 using Cit.Apps.Licensing.Application.ReadModels;
-using Cit.Apps.Licensing.Domain.Entities;
 using Cit.Apps.Licensing.UI.ViewModels;
 
 namespace Cit.Apps.Licensing.UI.Mappings
@@ -11,19 +9,18 @@ namespace Cit.Apps.Licensing.UI.Mappings
     {
         public CommonMappings()
         {
-            CreateMap<User, UserReadModel>();
-            CreateMap<UserReadModel, User>();
+            //user mappings
             CreateMap<UserReadModel, UserDetailsModel>();
             CreateMap<UserDetailsModel, UserReadModel>();
-
-            //for creating
             CreateMap<CreateUserViewModel, CreateUserCommand>();
 
-            //for updating
+            //Application mapping
+            CreateMap<ApplicationReadModel,ApplicationViewModel>();
 
-            CreateMap<UpdateUserCommand, User>();
-
-
+            //Client mapping
+            CreateMap<ClientReadModel, ClientViewModel>();
+            CreateMap<ClientViewModel, ClientReadModel>();
+            CreateMap<ClientReadModel, CreateClientViewModel>();
         }
     }
 }

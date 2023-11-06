@@ -18,10 +18,4 @@
     <ProjectReference Include="..\Cit.Apps.Licensing.Shared\Cit.Apps.Licensing.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Applications\Commands\CreateApplication\" />
-    <Folder Include="Features\Applications\Queries\GetSingleApplicationQuery\" />
-    <Folder Include="Features\Clients\" />
-  </ItemGroup>
-
 </Project>

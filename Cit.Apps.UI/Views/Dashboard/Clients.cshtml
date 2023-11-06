@@ -3,6 +3,32 @@
     ViewData["Title"] = "Clients";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
-
-<h1>Clients</h1>
-
+@model IEnumerable<Cit.Apps.Licensing.UI.ViewModels.ClientViewModel>
+<h1 class="text-center">Clients</h1>
+<a asp-action="CreateClient" asp-controller="Client">Create</a>
+<table class="table">
+    <thead>
+        <tr>
+            @*            <th>User ID</th>*@
+            <th>Client Name</th>
+            <th>Contact Person</th>
+            <th>Number</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var client in Model)
+        {
+            <tr>
+                @*                <td>@client.Id</td>*@
+                <td>@client.Name</td>
+                <td>@client.ContactPerson</td>
+                <td>@client.ContactNumber</td>
+                <td>
+                    <a asp-controller="Client" asp-action="UpdateClient" asp-route-id="@client.Id" class="btn btn-info">Edit</a>
+                    <a asp-controller="Client"  asp-action="DeleteClient" asp-route-id="@client.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
