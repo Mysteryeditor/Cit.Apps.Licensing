@@ -27,4 +27,8 @@
     <ProjectReference Include="..\Cit.Apps.Persistance\Cit.Apps.Licensing.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Attributes\" />
+  </ItemGroup>
+
 </Project>

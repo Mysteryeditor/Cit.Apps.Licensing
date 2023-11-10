@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Create Client";
-    Layout = "_Layout";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
 <h1>Update Client</h1>
@@ -35,4 +35,6 @@
     </div>*@
 
     <button type="submit" class="btn btn-primary">Submit</button>
+    <button asp-action="Clients" asp-controller="Dashboard" class="btn btn-info my-lg-3">Go Back</button>
+
 }

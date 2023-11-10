@@ -6,6 +6,7 @@ using Cit.Apps.Licensing.UI.Mappings;
 using Microsoft.EntityFrameworkCore;
 using NToastNotify;
 
+
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -21,7 +22,7 @@ builder.Services.AddDistributedMemoryCache();
 // Configure session options
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(1); // Set session timeout
+    options.IdleTimeout = TimeSpan.FromMinutes(10); // Set session timeout
 });
 #pragma warning restore CS0618 // Type or member is obsolete
 var connectionString = builder.Configuration.GetConnectionString("ConnectionString");
@@ -33,6 +34,7 @@ builder.Services.AddAutoMapper(config =>
 {
     config.AddProfile<CommonMappings>();
 });
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddPersistenceLayer(builder.Configuration);
 builder.Services.AddApplicationLayer();
 builder.Services.AddTransient<IPasswordService, PasswordService>();

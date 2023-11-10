@@ -6,5 +6,8 @@
         public string Name { get; set; }
         public long ContactNumber { get; set; }
         public string ContactPerson { get; set; }
+        public int CreatedBy { get; set; }
+
+        public int ModifiedBy { get; set; }
     }
 }

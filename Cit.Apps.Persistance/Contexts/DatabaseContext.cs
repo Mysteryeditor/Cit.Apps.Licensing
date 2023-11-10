@@ -31,6 +31,8 @@ namespace Cit.Apps.Licensing.Persistence.Contexts
             modelBuilder.Entity<User>().Property(p => p.IsDefault).HasDefaultValue(false);
             modelBuilder.Entity<ApplicationData>().HasData(GetApplications());
             modelBuilder.Entity<Client>().HasData(GetClients());
+            modelBuilder.Entity<SubscriptionPlan>().HasData(GetPlans());
+            modelBuilder.Entity<SubscriptionFeature>().HasData(GetFeatures());
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
         }
@@ -74,6 +76,39 @@ namespace Cit.Apps.Licensing.Persistence.Contexts
                 ModifiedAt = DateTime.Now,
                 CreatedBy = i,
                 ModifiedBy = i
+            }).ToList();
+        }
+
+        private static List<SubscriptionPlan> GetPlans()
+        {
+            return Enumerable.Range(1, 4).Select(p => new SubscriptionPlan
+            {
+                Id = p,
+                BillingCycleType = "Monthly",
+                Cost = 2000 + (p * 10),
+                CreatedAt= DateTime.Now,
+                CreatedBy=p,
+                ModifiedBy=p,
+                ModifiedAt=DateTime.Now,
+                ApplicationId=p,
+                Name=$"Plan{p}",
+                Description =$"Description{p }"
+            }).ToList();
+        }
+
+        private static List<SubscriptionFeature> GetFeatures()
+        {
+            return Enumerable.Range(1, 3).Select(p => new SubscriptionFeature
+            {
+                Id = p,
+                Name=$"Featire {1}",
+                SubscriptionPlanId=p,
+                IsEnabled=false,
+                CreatedAt = DateTime.Now,
+                CreatedBy = p,
+                ModifiedBy = p,
+                ModifiedAt = DateTime.Now,
+
             }).ToList();
         }
     }

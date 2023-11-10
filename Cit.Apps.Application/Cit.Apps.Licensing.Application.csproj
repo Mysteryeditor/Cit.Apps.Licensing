@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Cit.Apps.Licensing.Shared\Cit.Apps.Licensing.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Plans\Commands\" />
+  </ItemGroup>
+
 </Project>

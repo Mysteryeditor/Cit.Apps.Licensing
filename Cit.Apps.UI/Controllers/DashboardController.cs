@@ -19,7 +19,8 @@ namespace Cit.Apps.Licensing.UI.Controllers
         }
         public IActionResult HomePage()
         {
-            string? name=HttpContext.Session.GetString("username");
+            string name=HttpContext.Session.GetString("username");
+            TempData["name"] = name;
             return View();
         }
 

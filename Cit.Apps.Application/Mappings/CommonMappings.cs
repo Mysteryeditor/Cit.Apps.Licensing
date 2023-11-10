@@ -14,6 +14,9 @@ namespace Cit.Apps.Licensing.UI.Mappings
             CreateMap<UpdateUserCommand, User>();
             CreateMap<ApplicationData,ApplicationReadModel>();
             CreateMap<Client, ClientReadModel>();
+            //subscriptions
+            CreateMap<ClientSubscription, ClientSubscriptionReadModel>();
+            CreateMap<SubscriptionPlan, SubscriptionPlanReadModel>();
 
         }
     }

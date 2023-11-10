@@ -1,5 +1,4 @@
-﻿using Cit.Apps.Licensing.Application.ReadModels;
-using Cit.Apps.Shared.Result;
+﻿using Cit.Apps.Licensing.Domain.Entities;
 
 namespace Cit.Apps.Licensing.Application.Interfaces.Repositories
 {
@@ -12,7 +11,11 @@ namespace Cit.Apps.Licensing.Application.Interfaces.Repositories
         Task<T> AddAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);
+        Task<List<ClientSubscription>> GetSubscriptionData();
+        Task<ClientSubscription> GetSingleSubscription(int id);
+        Task<List<ClientSubscription>> GetSubscriptionDataByClient(int id);
+        IEnumerable<T> GetByExpression(string referenceColumnName, int id);
 
-  
+
     }
 }

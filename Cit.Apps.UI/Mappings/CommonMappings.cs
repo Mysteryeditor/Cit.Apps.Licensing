@@ -21,6 +21,10 @@ namespace Cit.Apps.Licensing.UI.Mappings
             CreateMap<ClientReadModel, ClientViewModel>();
             CreateMap<ClientViewModel, ClientReadModel>();
             CreateMap<ClientReadModel, CreateClientViewModel>();
+
+            //subscription mapping
+            CreateMap<ClientSubscriptionReadModel, ClientSubscriptionsViewModel>();
+            CreateMap<SubscriptionPlanReadModel, SubscriptionPlansViewModel>();
         }
     }
 }

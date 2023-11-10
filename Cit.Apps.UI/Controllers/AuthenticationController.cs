@@ -30,6 +30,7 @@ namespace Cit.Apps.Licensing.UI.Controllers
                 if (result.Statuscode == 200)
                 {
                     HttpContext.Session.SetString("username",userCredentials.Username);
+                    HttpContext.Session.SetString("userId", result.Data);
                     _toastNotification.AddSuccessToastMessage("Login successfull");
                     return RedirectToAction("HomePage", "Dashboard");
                 }
@@ -48,6 +49,13 @@ namespace Cit.Apps.Licensing.UI.Controllers
   
             }
             return View(userCredentials);
+        }
+
+        public IActionResult Logout()
+        {
+            _toastNotification.AddSuccessToastMessage("Logged Out Successfully");
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login");
         }
     }
 }

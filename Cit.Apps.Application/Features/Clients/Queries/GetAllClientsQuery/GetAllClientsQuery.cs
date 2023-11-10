@@ -4,11 +4,6 @@ using Cit.Apps.Licensing.Application.ReadModels;
 using Cit.Apps.Licensing.Domain.Entities;
 using Cit.Apps.Shared.Result;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cit.Apps.Licensing.Application.Features.Clients.Queries.GetAllClientsQuery
 {
@@ -16,7 +11,7 @@ namespace Cit.Apps.Licensing.Application.Features.Clients.Queries.GetAllClientsQ
 
     public class GetAllClientsQueryHandler : IRequestHandler<GetAllClientsQuery, ResultModel<IEnumerable<ClientReadModel>>>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        public readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         public GetAllClientsQueryHandler(IUnitOfWork unitOfWork,IMapper mapper)
         {
@@ -37,5 +32,6 @@ namespace Cit.Apps.Licensing.Application.Features.Clients.Queries.GetAllClientsQ
             }
 
         }
+
     }
 }

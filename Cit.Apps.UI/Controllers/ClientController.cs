@@ -93,5 +93,11 @@ namespace Cit.Apps.Licensing.UI.Controllers
         }
 
 
+        public async Task<IActionResult> ViewClientDetails(int id)
+        {
+            var clientData = await _mediator.Send(new GetClientByIdQuery { Id = id });
+            return View(_mapper.Map<ClientViewModel>(clientData.Data));
+        }
+
     }
 }
