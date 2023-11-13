@@ -4,11 +4,6 @@ using Cit.Apps.Licensing.Application.ReadModels;
 using Cit.Apps.Licensing.Domain.Entities;
 using Cit.Apps.Shared.Result;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cit.Apps.Licensing.Application.Features.Clients.Queries.GetClientByIdQuery
 {

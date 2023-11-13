@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewData["Title"] = "CreatePlan";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+@model Cit.Apps.Licensing.UI.ViewModels.SubscriptionPlansViewModel;
+<h1>CreatePlan</h1>
+
+<form asp-action="CreatePlan" method="post">
+    <input asp-for="Name" type="text" />
+    <button type="submit">Create</button>
+</form>

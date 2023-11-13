@@ -19,7 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Plans\Commands\" />
+    <Folder Include="Features\Plans\Commands\DeletePlanCommand\" />
+    <Folder Include="Features\Plans\Commands\UpdatePlanCommand\" />
   </ItemGroup>
 
 </Project>
