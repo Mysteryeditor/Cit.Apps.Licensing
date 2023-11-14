@@ -120,6 +120,13 @@
 
                 <li class="span-div my-lg-2">
                     <div class="py-lg-3">
+                        <a class="text-decoration-none sidebar-links @Html.IsActive("GetAllPlans", "Plans")" asp-action="GetAllPlans" asp-area="" asp-controller="Plans"><i class="fa-solid fa-user-tie fs-4 me-3"></i><span class="nav-span">Plans</span></a>
+
+                    </div>
+                </li>
+
+                <li class="span-div my-lg-2">
+                    <div class="py-lg-3">
                         <a class="text-decoration-none sidebar-links @Html.IsActive("Dashboard", "Clients")" asp-action="Clients" asp-area="" asp-controller="Dashboard"><i class="fa-regular fa-handshake fs-4 me-3"></i><span class="nav-span">Clients</span></a>
                     </div>
                 </li>
@@ -128,13 +135,6 @@
                         <a class="sidebar-links" asp-action="Logout" asp-area="" asp-controller="Authentication">
                             <i class="fa-solid fa-arrow-right-from-bracket fs-4 me-3"></i>
                             <span class="nav-span">Logout</span>
-                        </a>
-                    </div>
-
-                    <div class="span-div py-lg-3">
-                        <a class="sidebar-links" asp-action="CreatePlan" asp-area="" asp-controller="Plans">
-                            <i class="fa-solid fa-arrow-right-from-bracket fs-4 me-3"></i>
-                            <span class="nav-span">Create Plans</span>
                         </a>
                     </div>
                 </li>

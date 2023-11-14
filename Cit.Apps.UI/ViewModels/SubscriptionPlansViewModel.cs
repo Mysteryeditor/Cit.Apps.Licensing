@@ -8,6 +8,5 @@
         public string BillingCycleType { get; set; }
         public decimal Cost { get; set; }
         public int ApplicationId { get; set; }
-        public string ApplicationName { get; set; }
     }
 }

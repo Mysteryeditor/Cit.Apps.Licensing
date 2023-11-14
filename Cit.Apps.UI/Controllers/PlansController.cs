@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Cit.Apps.Licensing.Application.Features.ApplicationFeature.Queries.GetAllApplicationsQuery;
 using Cit.Apps.Licensing.Application.Features.Plans.Commands.CreatePlanCommand;
 using Cit.Apps.Licensing.Application.Features.Plans.Queries.GetAllPlansQuery;
 using Cit.Apps.Licensing.UI.ViewModels;
@@ -23,9 +24,21 @@ namespace Cit.Apps.Licensing.UI.Controllers
             return View();
         }
 
-        public IActionResult CreatePlan()
+        public async Task<IActionResult> CreatePlan()
         {
-            return View();
+            var applicationsQuery = await _mediator.Send(new GetApplicationQuery());
+
+            if (applicationsQuery.Statuscode == 200)
+            {
+                var queryData=_mapper.Map< List<ApplicationViewModel >>(applicationsQuery.Data);
+                SubscriptionPlanWrapper subscriptionPlanWrapper = new SubscriptionPlanWrapper
+                {
+                    applications= queryData
+                };
+                return View(subscriptionPlanWrapper);
+            }
+            return RedirectToAction("Homepage","Dashboard");
+        
         }
 
         [HttpPost]

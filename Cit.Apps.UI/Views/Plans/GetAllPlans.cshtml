@@ -6,8 +6,11 @@
 
 <h1>GetAllPlans</h1>
 @model IEnumerable<Cit.Apps.Licensing.UI.ViewModels.SubscriptionPlansViewModel>;
-
+<a asp-action="CreatePlan" asp-area="" asp-controller="Plans">
+    <span class="nav-span">Create Plans</span>
+</a>
 @foreach(var item in Model)
 {
     <h1>@item.Name</h1>
 }
+
