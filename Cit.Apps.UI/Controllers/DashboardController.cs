@@ -4,21 +4,34 @@ using Cit.Apps.Licensing.Application.Features.Clients.Queries.GetAllClientsQuery
 using Cit.Apps.Licensing.UI.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
 using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace Cit.Apps.Licensing.UI.Controllers
 {
+    
     public class DashboardController : Controller
     {
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
-        public DashboardController(IMediator mediator,IMapper mapper)
+        private readonly IToastNotification _toastNotification;
+        public DashboardController(IMediator mediator,IMapper mapper,IToastNotification toastNotification)
         {
             _mediator = mediator;
             _mapper = mapper;
+            _toastNotification = toastNotification;
         }
+
+        
         public IActionResult HomePage()
         {
+            ClaimsPrincipal principal = HttpContext.User;
+            if (!principal.Identity.IsAuthenticated)
+            {
+                _toastNotification.AddErrorToastMessage("Session Expired");
+                return RedirectToAction("Login", "Authentication");
+            }
             string name=HttpContext.Session.GetString("username");
             TempData["name"] = name;
             return View();
@@ -26,6 +39,12 @@ namespace Cit.Apps.Licensing.UI.Controllers
 
         public IActionResult Administration()
         {
+            ClaimsPrincipal principal = HttpContext.User;
+            if (!principal.Identity.IsAuthenticated)
+            {
+                _toastNotification.AddErrorToastMessage("Session Expired");
+                return RedirectToAction("Login", "Authentication");
+            }
             string? name = HttpContext.Session.GetString("username");
 
             return View();
@@ -33,6 +52,12 @@ namespace Cit.Apps.Licensing.UI.Controllers
 
         public async Task<IActionResult> Applications()
         {
+            ClaimsPrincipal principal = HttpContext.User;
+            if (!principal.Identity.IsAuthenticated)
+            {
+                _toastNotification.AddErrorToastMessage("Session Expired");
+                return RedirectToAction("Login", "Authentication");
+            }
             var result = await _mediator.Send(new GetApplicationQuery());
             if(result.Statuscode == 200)
             {
@@ -51,6 +76,12 @@ namespace Cit.Apps.Licensing.UI.Controllers
 
         public async Task<IActionResult> Clients()
         {
+            ClaimsPrincipal principal = HttpContext.User;
+            if (!principal.Identity.IsAuthenticated)
+            {
+                _toastNotification.AddErrorToastMessage("Session Expired");
+                return RedirectToAction("Login", "Authentication");
+            }
             var result = await _mediator.Send(new GetAllClientsQuery());
             if (result.Statuscode == 200)
             {
@@ -63,12 +94,6 @@ namespace Cit.Apps.Licensing.UI.Controllers
             }
             //error handling
             return View();
-        }
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-    
+        }   
     }
 }

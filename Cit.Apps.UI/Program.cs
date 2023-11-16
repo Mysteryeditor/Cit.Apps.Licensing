@@ -3,6 +3,7 @@ using Cit.Apps.Licensing.Persistence.Contexts;
 using Cit.Apps.Licensing.Persistence.Extensions;
 using Cit.Apps.Licensing.Shared.Password;
 using Cit.Apps.Licensing.UI.Mappings;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using NToastNotify;
 
@@ -16,6 +17,14 @@ builder.Services.AddRazorPages().AddNToastNotifyNoty(new NotyOptions
     Timeout = 5000,
 
 });
+
+builder.Services.AddAuthentication(
+    CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
+    option =>
+    {
+        option.LoginPath = "/Authentication/Login";
+        option.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+    });
 // Add distributed memory cache for session
 builder.Services.AddDistributedMemoryCache();
 
@@ -57,7 +66,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseAuthentication();
 app.UseRouting();
 app.MapRazorPages();
 app.UseAuthorization();
