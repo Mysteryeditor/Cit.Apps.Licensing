@@ -5,7 +5,6 @@ using Cit.Apps.Licensing.Application.Features.Users.Commands.UpdateUserCommand;
 using Cit.Apps.Licensing.Application.Features.Users.Queries.GetUserByIdQuery;
 using Cit.Apps.Licensing.Application.Features.Users.Queries.GetUsers;
 using Cit.Apps.Licensing.Application.Interfaces.Repositories;
-using Cit.Apps.Licensing.Application.ReadModels;
 using Cit.Apps.Licensing.Shared.Password;
 using Cit.Apps.Licensing.UI.ViewModels;
 using Cit.Apps.Shared.Result;
@@ -57,9 +56,7 @@ namespace Cit.Apps.Licensing.UI.Controllers
                 ResultModel<string> result = await _mediator.Send(_mapper.Map<CreateUserCommand>(model));
                 _toastNotification.AddSuccessToastMessage("User Created Successfully");
                 return RedirectToAction("AllUsers");
-
             }
-
             return View(model);
         }
         [HttpGet]
@@ -67,7 +64,6 @@ namespace Cit.Apps.Licensing.UI.Controllers
         {
             var currentUser = await _mediator.Send(new GetUserByIdQuery(id));
             var item = _mapper.Map<UserDetailsModel>(currentUser.Data);
-
             return View(item);
         }
 
@@ -92,7 +88,7 @@ namespace Cit.Apps.Licensing.UI.Controllers
 
                 else
                 {
-                    //toastr
+                    _toastNotification.AddErrorToastMessage("Operation failed..Please try later");
                     return RedirectToAction("AllUsers");
 
                 }

@@ -2,7 +2,7 @@
 <h1 class="text-center">User Details</h1>
 <a class="nav-link text-dark btn btn-success text-white ms-auto col-2" asp-area="" asp-controller="User" asp-action="CreateUser">New User</a>
 
-<table class="table">
+<table class="table" id="userTable">
     <thead>
         <tr>
 @*            <th>User ID</th>*@
@@ -30,3 +30,13 @@
         }
     </tbody>
 </table>
+@section scripts{
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#userTable").DataTable();
+        })
+    </script>
+                }

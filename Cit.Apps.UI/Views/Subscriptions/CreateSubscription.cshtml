@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "CreateSubscription";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+@model Cit.Apps.Licensing.UI.ViewModels.ClientSubscriptionWrapper;
+
+<h1>Create Subscription</h1>
+
+<div class="container">
+    <form method="post" asp-action="CreateSubscription">
+        <div class="row p-3">
+            <div class="col-lg-8">
+                <label>
+                    Choose Plan
+                </label>
+                <select id="drpEmpList" class="form-control" asp-for="subscriptions.SubscriptionPlanId" asp-items="@(new SelectList(Model.plans, "Id", "Name"))">
+                    <option value="">
+                        --Select--
+                    </option>
+                    
+                </select>
+            </div>
+
+            <div class="col-lg-8">
+                <label>
+                    Choose Client
+                </label>
+                <select id="drpEmpList" class="form-control" asp-for="subscriptions.ClientId" asp-items="@(new SelectList(Model.clients, "Id", "Name"))">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+        </div>
+    </form>
+
+</div>

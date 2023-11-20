@@ -21,7 +21,7 @@ namespace Cit.Apps.Licensing.Application.Features.Users.Commands.DeleteUserComma
         public async Task<ResultModel<string>> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
         {
             var successResult =await Result<string>.ReturnResult(200, "Deleted Successfully", null);
-            var badResult =await  Result<string>.ReturnResult(500, "Deleted Successfully", null);
+            var badResult =await  Result<string>.ReturnResult(500, "Deleted Failed", null);
 
             try
             {

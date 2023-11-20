@@ -1,0 +1,42 @@
+﻿@model Cit.Apps.Licensing.UI.ViewModels.ClientSubscriptionsViewModel
+@{
+    ViewData["Title"] = "Extend Subscription";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<div class="container">
+    <h1 class="text-center">Subscription Extension</h1>
+    <div class="row justify-content-center">
+        <div class="card col-lg-8">
+            <div class="card-title text-center">
+                <h2>@Model.SubscriptionPlan.Name</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Billing Cycle:</h4>
+                        <label>@Model.SubscriptionPlan.BillingCycleType</label>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>End Date:</h4>
+                        <label>@Model.EndDate</label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <h4>Start Date:</h4>
+                        <label>@Model.StartDate</label>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>End Date:</h4>
+                        <label>@Model.EndDate.Date</label>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-end">
+                <a class="btn btn-primary" asp-action="ExtendConfirmed" asp-route-id="@Model.Id">Extend</a>
+                <a class="btn btn-info" asp-action="ClientSubscriptions" asp-route-id="@Model.ClientId">Go Back</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,8 +1,55 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Clients";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
+@model IEnumerable<Cit.Apps.Licensing.UI.ViewModels.ClientViewModel>
+<h1 class="text-center">Clients</h1>
+<a asp-action="CreateClient" class="btn btn-primary mb-3" asp-controller="Client">Create</a>
 
-<h1>Clients</h1>
+<table class="table" id="clientsTable">
+    <thead>
+        <tr>
+            @*            <th>User ID</th>*@
+            <th>Client Name</th>
+            <th>Contact Person</th>
+            <th>Number</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var client in Model)
+        {
+            <tr>
+                @*                <td>@client.Id</td>*@
+                <td>@client.Name</td>
+                <td>@client.ContactPerson</td>
+                <td>@client.ContactNumber</td>
+                <td class="d-lg-flex">
+                               
+                    <a asp-controller="Client" asp-action="UpdateClient" asp-route-id="@client.Id" class="btn btn-info mx-2">Edit</a>
+                    <a asp-controller="Client" asp-action="DeleteClient" asp-route-id="@client.Id" class="btn btn-danger">Delete</a>
+                    <button class="btn btn-secondary col-3 dropdown-toggle mx-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        View
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" asp-action="CreateSubscription" asp-controller="Subscriptions">Add Subscription</a></li>
+                        <li><a class="dropdown-item" asp-route-id="@client.Id" asp-action="ViewClientDetails" asp-controller="Client">Details</a></li>
+                        <li><a asp-action="ClientSubscriptions" asp-controller="Subscriptions" asp-route-id="@client.Id" class="dropdown-item">Current Subscriptions</a></li>
+                        <li><a asp-controller="Subscriptions" asp-action="TerminatedSubscriptions" asp-route-id="@client.Id" class="dropdown-item">Subscription History</a></li>
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
+@section scripts{
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#clientsTable").DataTable();
+        })
+    </script>
+                }

@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cit.Apps.Licensing.Persiste
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cit.Apps.Licensing.UI", "Cit.Apps.UI\Cit.Apps.Licensing.UI.csproj", "{8EE2D9B1-443F-4DEC-8B64-FAAE6F0AF805}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cit.Apps.Licensing.Shared", "Cit.Apps.Licensing.Shared\Cit.Apps.Licensing.Shared.csproj", "{DA69ECEA-52CB-4D9D-9219-3295AF4C4273}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cit.Apps.Licensing.Shared", "Cit.Apps.Licensing.Shared\Cit.Apps.Licensing.Shared.csproj", "{DA69ECEA-52CB-4D9D-9219-3295AF4C4273}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,65 @@
+﻿@model List<Cit.Apps.Licensing.UI.ViewModels.ClientSubscriptionsViewModel>
+@{
+    ViewData["Title"] = "Client Subscription";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    }
+<div class="container my-5">
+    <h1>Subscriptions-@Model[0].Client.Name</h1>
+  
+    <div class="row justify-content-center">
+        @if (Model is not null)
+        {
+            @foreach (var clientsub in @Model)
+            {
+                @if (clientsub.IsTerminated==false)
+                {
+                    <div class="card col-lg-5 col-sm-12 col-md-10 my-5 p-5">
+                        <div class="card-title">
+                            @if (clientsub.IsActive)
+                            {
+                                <i class="float-end fa-solid fa-circle" style="color:greenyellow"></i>
+                            }
+                            else
+                            {
+                                <i class="float-end fa-solid fa-circle" style="color:red"></i>
+
+                            }
+                            <h4>@clientsub.SubscriptionPlan.Name</h4>
+                            <h4>@clientsub.Client.Name</h4>
+                            <h5>Rs.@clientsub.SubscriptionPlan.Cost</h5>
+                        </div>
+                        <div>
+                            <a class="btn btn-primary" asp-action="ExtendSubscription" asp-route-id="@clientsub.Id">Extend</a>
+                            <a class="btn btn-danger" asp-action="TerminateSubscription" asp-route-id="@clientsub.Id">Terminate</a>
+                        </div>
+                    </div>
+                }
+
+                else
+                {
+                    <div class="card text-center col-lg-5">
+                        <div class="p-5 m-5">
+                            <h6>No Active subscriptions :(</h6>
+                            <a asp-action="TerminatedSubscriptions" asp-route-id="@clientsub.Client.Id" class="btn btn-primary">View History</a>
+                        </div>
+                        </div>
+                }
+
+
+        }
+        }
+
+        else{
+            <h6>No content available</h6>
+            <a class="btn btn-info" asp-action="ViewClientDetails" asp-controller="Client" asp-route-id="@Model[0].ClientId">Go Back</a>
+        }
+       
+        
+    </div>
+   <div>
+        <a class="btn btn-info float-end" asp-action="ViewClientDetails" asp-controller="Client" asp-route-id="@Model[0].ClientId">Go Back</a>
+
+    </div>
+
+</div>

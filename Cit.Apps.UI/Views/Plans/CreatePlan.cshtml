@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "CreatePlan";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+@model Cit.Apps.Licensing.UI.ViewModels.SubscriptionPlanWrapper;
+<h1>CreatePlan</h1>
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="planModel.Name">Name:</label>
+        <input asp-for="planModel.Name" class="form-control" />
+        <span asp-validation-for="planModel.Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="planModel.Description">Description:</label>
+        <textarea asp-for="planModel.Description" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="planModel.Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="planModel.BillingCycleType">Billing Cycle Type:</label>
+        <select asp-for="planModel.BillingCycleType" class="form-control">
+            <option value="">
+                --Select--
+            </option>
+            <option value="Yearly">Yearly</option>
+            <option value="Monthly">Monthly</option>
+        </select>
+        <span asp-validation-for="planModel.BillingCycleType" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="planModel.Cost">Cost:</label>
+        <input asp-for="planModel.Cost" class="form-control" />
+        <span asp-validation-for="planModel.Cost" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="planModel.ApplicationId">Application:</label>
+        <select id="drpEmpList" class="form-control" asp-for="planModel.ApplicationId" asp-items="@(new SelectList(Model.applications, "Id", "Name"))">
+            <option value="">
+                --Select--
+            </option>
+        </select>
+        <span asp-validation-for="planModel.ApplicationId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+<a asp-action="GetAllPlans" asp-area="" asp-controller="Plans">
+    <span class="nav-span">Go Back</span>
+</a>

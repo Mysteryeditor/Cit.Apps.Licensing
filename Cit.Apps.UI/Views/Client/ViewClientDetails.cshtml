@@ -1,0 +1,29 @@
+﻿@model Cit.Apps.Licensing.UI.ViewModels.ClientViewModel
+
+@{
+    ViewData["Title"] = "Client Details";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<div class="container">
+    <h1 class="mb-4">Client Details</h1>
+    <div class="card">
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Id:</strong> @Model.Id</li>
+                <li class="list-group-item"><strong>Name:</strong> @Model.Name</li>
+                <li class="list-group-item"><strong>Contact Number:</strong> @Model.ContactNumber</li>
+                <li class="list-group-item"><strong>Contact Person:</strong> @Model.ContactPerson</li>
+                <li class="list-group-item"><strong>Created By:</strong> @Model.CreatedBy</li>
+                <li class="list-group-item"><strong>Modified By:</strong> @Model.ModifiedBy</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a asp-action="ClientSubscriptions" asp-controller="Subscriptions" asp-route-id="@Model.Id" class="btn btn-primary">View Current Subscriptions</a>
+        <a asp-action="SubscriptionHistory" asp-controller="Client" asp-route-id="@Model.Id" class="btn btn-secondary">Subscription History</a>
+        <a asp-action="Clients" asp-controller="Dashboard" asp-route-id="@Model.Id" class="btn btn-info">Go Back</a>
+
+    </div>
+</div>

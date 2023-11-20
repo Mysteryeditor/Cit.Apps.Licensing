@@ -25,6 +25,7 @@ namespace Cit.Apps.Licensing.Persistence.Repositories
                 result = await _passwordService.VerifyPasswordHash(password, Convert.FromBase64String(userData.PasswordHash), Convert.FromBase64String(userData.PasswordSalt));
                 if (result.Statuscode == 200)
                 {
+                    result.Data=userData.Id.ToString();
                     return result;
                 }
                 else

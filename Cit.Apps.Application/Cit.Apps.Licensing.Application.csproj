@@ -19,9 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Applications\Commands\CreateApplication\" />
-    <Folder Include="Features\Applications\Queries\GetSingleApplicationQuery\" />
-    <Folder Include="Features\Clients\" />
+    <Folder Include="Features\Plans\Commands\DeletePlanCommand\" />
+    <Folder Include="Features\Plans\Commands\UpdatePlanCommand\" />
   </ItemGroup>
 
 </Project>

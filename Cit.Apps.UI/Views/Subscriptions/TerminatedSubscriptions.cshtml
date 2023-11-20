@@ -1,0 +1,43 @@
+﻿@model List<Cit.Apps.Licensing.UI.ViewModels.ClientSubscriptionsViewModel>
+@{
+    ViewData["Title"] = "Client Subscription";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+}
+<div class="container my-5">
+
+
+    <div class="row justify-content-center">
+  
+        @if (Model is not null)
+
+        {
+            <h1>Subscriptions-@Model[0].Client.Name</h1>
+            @foreach (var clientsub in @Model)
+            {
+                @if (clientsub.IsTerminated == true)
+                {
+                    <div class="card col-lg-5 col-sm-12 col-md-10 my-5 p-5">
+                        <div class="card-title">
+                            <h4>@clientsub.SubscriptionPlan.Name</h4>
+                            <h4>@clientsub.Client.Name</h4>
+                            <h5>Rs.@clientsub.SubscriptionPlan.Cost</h5>
+                        </div>
+                    </div>
+                }
+            }
+        }
+
+        else
+        {
+            <h6>No content available</h6>
+            <a class="btn btn-info" asp-action="ViewClientDetails" asp-controller="Client" asp-route-id="@Model[0].ClientId">Go Back</a>
+        }
+
+
+    </div>
+    <div>
+        <a class="btn btn-info float-end" asp-action="ViewClientDetails" asp-controller="Client" asp-route-id="@Model[0].ClientId">Go Back</a>
+    </div>
+
+</div>
